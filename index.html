@@ -769,28 +769,93 @@
             color: #d4af37;
         }
 
-        .whatsapp {
+        /* --- CHATBOT STYLES --- */
+        .chatbot-trigger {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background: #25D366;
-            color: white;
+            background: #d4af37;
+            color: #111111;
             width: 60px;
             height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 28px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
             animation: pulse 2s infinite;
             z-index: 999;
         }
 
-        .whatsapp:hover {
+        .chatbot-trigger:hover {
             transform: scale(1.1);
             animation: none;
+        }
+
+        .chatbot-window {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            width: 280px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: #111;
+        }
+
+        .chat-header button {
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .chat-body {
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .chat-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .chat-options button {
+            background: #fdfbf7;
+            border: 1px solid #d4af37;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .chat-options button:hover {
+            background: #d4af37;
+            color: #fff;
         }
 
         @keyframes slideUpFade {
@@ -799,9 +864,9 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
         }
 
         .reveal {
@@ -1070,12 +1135,18 @@
                 text-align: center;
             }
             
-            .whatsapp {
+            .chatbot-trigger {
                 width: 54px; 
                 height: 54px;
-                font-size: 26px;
+                font-size: 24px;
                 bottom: 20px;
                 right: 20px;
+            }
+
+            .chatbot-window {
+                width: calc(100vw - 40px);
+                right: 20px;
+                bottom: 85px;
             }
 
             .rolex-card {
@@ -1544,11 +1615,65 @@
         <p style="font-size: 13px; opacity: 0.7;">Wedding Photography & Cinematic Films</p>
     </footer>
 
-    <a href="https://wa.me/916291275473" target="_blank" class="whatsapp" title="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+    <a href="#" class="chatbot-trigger" id="chatbotTrigger" title="Chat with us">
+        <i class="fa-solid fa-robot"></i>
     </a>
 
+    <div id="chatbotWindow" class="chatbot-window">
+        <div class="chat-header">
+            <span>Harvisha Bot</span>
+            <button onclick="toggleChat()">&times;</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <p>Hi, how can I help you?</p>
+        </div>
+        <div class="chat-options">
+            <button onclick="answerFAQ('price')">What is your pricing?</button>
+            <button onclick="answerFAQ('other')">Other questions</button>
+        </div>
+    </div>
+
     <script>
+        // --- CHATBOT LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const windowChat = document.getElementById('chatbotWindow');
+            const trigger = document.getElementById('chatbotTrigger');
+            let hasScrolledChat = false;
+            let chatTriggered = false;
+
+            window.addEventListener('scroll', () => {
+                if (!hasScrolledChat && window.scrollY > 100) {
+                    hasScrolledChat = true;
+                    setTimeout(() => {
+                        if (!chatTriggered) {
+                            windowChat.style.display = 'block';
+                            chatTriggered = true;
+                        }
+                    }, 10000); // 10 seconds delay
+                }
+            });
+
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleChat();
+            });
+        });
+
+        function toggleChat() {
+            const windowChat = document.getElementById('chatbotWindow');
+            windowChat.style.display = windowChat.style.display === 'none' || windowChat.style.display === '' ? 'block' : 'none';
+        }
+
+        function answerFAQ(type) {
+            if (type === 'price') {
+                document.getElementById('chatBody').innerHTML = "<p>Our packages start from the Essential Package. Check the Packages section or chat with us on WhatsApp for custom quotes!</p>";
+            } else {
+                alert("I don't know, but our team will help you! Redirecting you to WhatsApp...");
+                window.open('https://wa.me/916291275473', '_blank');
+            }
+        }
+
+        // --- ORIGINAL LOGIC ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
