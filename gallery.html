@@ -32,7 +32,7 @@
       gallery.innerHTML = '<div class="empty">Loading photos…</div>';
 
       try {
-        const response = await fetch('backend/wedding/');
+        const response = await fetch('backend/');
         if (!response.ok) {
           throw new Error('Folder listing unavailable');
         }
@@ -45,7 +45,7 @@
           .filter(href => /\.(jpe?g|png|webp|gif|bmp)$/i.test(href));
 
         if (!links.length) {
-          gallery.innerHTML = '<div class="empty">No wedding photos found yet. Drop images into the backend/wedding</div>';
+          gallery.innerHTML = '<div class="empty">No wedding photos found yet. Drop images into the backend/</div>';
           return;
         }
 
@@ -54,7 +54,7 @@
           const card = document.createElement('div');
           card.className = 'card';
           card.innerHTML = `
-            <img src="backend/wedding/${href}" alt="Wedding photo">
+            <img src="backend/{href}" alt="Wedding photo">
             <div class="caption">Wedding Photo</div>
           `;
           gallery.appendChild(card);
