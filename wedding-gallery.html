@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WEDDINGS | Gallery</title>
+  <style>
+    :root{--ink:#161616;--line:#dedbd4;--paper:#fffdf8;--accent:#a57a42}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--paper);color:var(--ink)}
+    .wrap{max-width:1200px;margin:0 auto;padding:24px 16px 60px}
+    h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(32px,5vw,56px);margin:0 0 10px}
+    p{color:#666;margin:0 0 20px}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:white;border:1px solid var(--line);overflow:hidden}
+    .card img{display:block;width:100%;height:240px;object-fit:cover}
+    .card .caption{padding:12px 14px;font-size:14px;color:#444}
+    .empty{padding:24px;border:1px dashed var(--line);background:#fff;text-align:center;color:#666}
+    @media (max-width:760px){.gallery{grid-template-columns:1fr 1fr}}
+    @media (max-width:500px){.gallery{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>WEDDINGS</h1>
+    <p>Upload wedding photos into the backend folder and they will appear here automatically.</p>
+    <div id="gallery" class="gallery"></div>
+  </div>
+
+  <script>
+    async function loadGallery() {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '<div class="empty">Loading photos…</div>';
+
+      try {
+        const response = await fetch('backend/wedding/');
+        if (!response.ok) {
+          throw new Error('Folder listing unavailable');
+        }
+
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const links = Array.from(doc.querySelectorAll('a'))
+          .map(a => a.getAttribute('href'))
+          .filter(href => /\.(jpe?g|png|webp|gif|bmp)$/i.test(href));
+
+        if (!links.length) {
+          gallery.innerHTML = '<div class="empty">No wedding photos found yet. Drop images into the backend/wedding</div>';
+          return;
+        }
+
+        gallery.innerHTML = '';
+        links.forEach((href) => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="backend/wedding/${href}" alt="Wedding photo">
+            <div class="caption">Wedding Photo</div>
+          `;
+          gallery.appendChild(card);
+        });
+      } catch (err) {
+        gallery.innerHTML = '<div class="empty">No wedding photos found yet. Drop images into the backend/wedding folder.</div>';
+      }
+    }
+
+    loadGallery();
+  </script>
+</body>
+</html>
