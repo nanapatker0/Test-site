@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#111111">
+    
+    <title>Bridal & Luxury Makeup | Harvisha Pictures</title>
+    <meta name="title" content="Bridal & Luxury Makeup | Harvisha Pictures">
+    <meta name="description" content="Harvisha Pictures offers luxury bridal makeup, HD airbrush styling, and event makeup services in Kolkata.">
+    <meta name="keywords" content="bridal makeup kolkata, luxury makeup artist, hd airbrush makeup, Harvisha Pictures makeup">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: { preflight: false },
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0a0a',
+                        accent: '#facc15',
+                        accentHover: '#eab308'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #fdfbf7; 
+            color: #111;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ==========================================================
+           100% EXACT NAVBAR CSS COPIED FROM MAIN PAGE LINE-BY-LINE
+           ========================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+            transition: all 0.3s ease;
+        }
+
+        .logo img {
+            max-height: 45px; 
+            width: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            margin-left: 20px;
+            color: #111;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #777;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 1001;
+            padding: 5px;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #111;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* =========================================
+           UNIQUE PREMIUM MAGAZINE HERO SECTION 
+           ========================================= */
+        .editorial-hero {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 8%;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        .hero-image-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("makeup-image/hero.jpg"); 
+            background-size: cover;
+            background-position: center 20%;
+            z-index: 1;
+            animation: subtlePan 20s infinite alternate ease-in-out;
+        }
+
+        .hero-image-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        @keyframes subtlePan {
+            from { transform: scale(1) translateX(0); }
+            to { transform: scale(1.05) translateX(-10px); }
+        }
+
+        .editorial-card {
+            position: relative;
+            z-index: 2;
+            background: rgba(253, 251, 247, 0.92);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 60px 50px;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transform: translateX(-40px);
+            animation: slideInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.4s;
+        }
+
+        .hero-tagline {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #b05c50;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .editorial-card h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            color: #111;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .editorial-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .btn-editorial {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #111;
+            color: #fff;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            border: 1px solid #111;
+        }
+
+        .btn-editorial:hover {
+            background: #d4af37;
+            color: #111;
+            border-color: #d4af37;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* =========================================
+           SERVICES & BODY STYLING
+           ========================================= */
+        .makeup-container {
+            padding: 100px 8% 60px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            margin-bottom: 100px;
+        }
+
+        .service-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .service-image-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .circle-frame {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 15px solid #fff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+        }
+
+        .service-text {
+            flex: 1;
+        }
+
+        .service-tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #d4af37;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .service-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 44px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .service-text p {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 25px;
+            max-width: 480px;
+        }
+
+        .detail-list {
+            border-top: 1px solid #e5dfd3;
+            padding-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .detail-item h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .detail-item p {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .btn-minimal {
+            display: inline-block;
+            padding: 10px 30px;
+            border: 1px solid #111;
+            color: #111;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-minimal:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        /* --- Package Section --- */
+        .packages-section {
+            background-color: #f5f0e6;
+            padding: 100px 8%;
+            text-align: center;
+        }
+
+        .packages-intro {
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+        }
+
+        .packages-intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .packages-intro p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .arch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .arch-card {
+            background: #fdfbf7;
+            padding: 50px 30px;
+            border-radius: 150px 150px 40px 40px;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .arch-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .price-tag {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #b05c50;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .arch-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .arch-card .desc {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 25px;
+            height: 40px;
+        }
+
+        .feature-lines {
+            border-top: 1px dashed #e0dacb;
+            padding-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .feature-lines p {
+            font-size: 14px;
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        /* --- Gallery Section --- */
+        .gallery-section {
+            padding: 100px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* --- Testimonials --- */
+        .testimonials-section {
+            background-color: #f2ebd9;
+            padding: 100px 8%;
+            position: relative;
+        }
+
+        .bg-watermark {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 12vw;
+            color: rgba(0, 0, 0, 0.02);
+            white-space: nowrap;
+            pointer-events: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .minimal-test-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .minimal-test-card .stars {
+            color: #b05c50;
+            font-size: 14px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .minimal-test-card p {
+            font-style: italic;
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .minimal-test-card h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #111;
+        }
+
+        /* --- WhatsApp Floating Button --- */
+        .whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            animation: pulse 2s infinite;
+            z-index: 999;
+        }
+
+        .whatsapp:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        /* --- Scroll Reveal animation --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================
+           100% EXACT MEDIA QUERIES COPIED FROM MAIN PAGE
+           ========================================================== */
+        @media (max-width: 1024px) {
+            header {
+                padding: 15px 4%;
+            }
+            nav a {
+                margin-left: 15px;
+                font-size: 12px;
+            }
+        }
+        
+        @media(max-width: 1024px) {
+            header {
+                padding: 15px 5%;
+            }
+            .menu-toggle { 
+                display: flex; 
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 25px;
+                opacity: 0;
+                pointer-events: none;
+                transform: scale(1.05);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 999;
+            }
+            nav.nav-active {
+                opacity: 1;
+                pointer-events: auto;
+                transform: scale(1);
+                max-height: none;
+                padding: 0;
+            }
+            nav a {
+                margin: 0;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 1.5px;
+                color: #111111;
+                width: auto;
+                text-align: center;
+                text-transform: uppercase;
+            }
+            .menu-toggle.is-active {
+                position: relative;
+                z-index: 1001;
+            }
+            .menu-toggle.is-active .bar {
+                background-color: #111111;
+            }
+            .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        }
+
+        /* --- MOBILE LAYOUT FOR MAKEUP ELEMENTS --- */
+        @media(max-width: 992px) {
+            .service-row, .service-row.reverse {
+                flex-direction: column !important;
+                gap: 40px;
+                text-align: center;
+            }
+            .service-text p {
+                margin: 0 auto 25px auto;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .editorial-hero { 
+                height: 100vh; 
+                padding: 40px 5%; 
+                justify-content: center;
+                margin-top: 0;
+            }
+            
+            .hero-image-bg::after { 
+                background: rgba(0,0,0,0.5); 
+            }
+            
+            .editorial-card { 
+                padding: 40px 25px; 
+                text-align: center; 
+                transform: translateY(30px);
+                animation: slideUpMobile 1s ease forwards 0.3s;
+            }
+
+            @keyframes slideUpMobile {
+                from { opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            .editorial-card h1 { font-size: 38px; }
+            .editorial-card p { font-size: 14px; margin-bottom: 25px; }
+
+            .circle-frame { 
+                width: 260px; 
+                height: 260px; 
+                border-width: 8px; 
+            }
+
+            .service-text h2 { font-size: 28px; }
+            .service-text p { font-size: 14px; }
+
+            .arch-grid {
+                grid-template-columns: 1fr;
+                padding: 0 10px;
+            }
+            .arch-card {
+                padding: 40px 20px;
+                border-radius: 130px 130px 30px 30px;
+            }
+
+            .gallery-grid { 
+                grid-template-columns: 1fr 1fr;
+                gap: 10px; 
+            }
+            .gallery-item { height: 200px; }
+
+            .testimonials-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            .minimal-test-card { padding: 25px; }
+            .bg-watermark { display: none; }
+
+            .whatsapp {
+                width: 54px; 
+                height: 54px;
+                font-size: 26px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EXACT NAV BAR MENU LINKS COPIED FROM MAIN PAGE -->
+    <header>
+        <a href="https://harvishapictures.in/" class="logo">
+            <img src="images/logo.png" alt="Harvisha Pictures Logo">
+        </a>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <nav id="nav-menu">
+            <a href="https://harvishapictures.in/eventservicescoming/">Event Services</a>
+            <a href="https://harvishapictures.in/">Photography Services</a>
+            <a href="https://harvishapictures.in/#portfolio">Portfolio</a>
+            <a href="https://harvishapictures.in/#testimonials">Testimonials</a>
+            <a href="https://harvishapictures.in/#about">About</a>
+            <a href="#footer">Contact</a>
+        </nav>
+    </header>
+
+    <!-- UNIQUE EDITORIAL/MAGAZINE HERO SECTION -->
+    <section class="editorial-hero">
+        <div class="hero-image-bg"></div>
+        <div class="editorial-card">
+            <span class="hero-tagline">Exquisite Artistry</span>
+            <h1>Luxury Bridal<br>Makeup</h1>
+            <p>Enhancing your natural elegance with world-class products and cinematic precision for your special day.</p>
+            <a href="https://wa.me/916291275473?text=Hi%20Harsh!%20I'm%20looking%20for%20a%20bridal%20makeup%20artist%20for%20my%20upcoming%20event." target="_blank" class="btn-editorial">Consult Our Artist</a>
+        </div>
+    </section>
+
+    <!-- Services Presentation Showcase -->
+    <main class="makeup-container">
+        
+        <!-- Row 1 -->
+        <div class="service-row reveal">
+            <div class="service-image-wrapper">
+                <img src="makeup-image/bridal.jpg" class="circle-frame" alt="Bridal Makeup Application">
+            </div>
+            <div class="service-text">
+                <span class="service-tag">Luxury Services</span>
+                <h2>Bridal Makeup</h2>
+                <p>Timeless luxury styling structured meticulously around your profile features. We blend editorial artistry with classic longevity, creating an authentic luminous glow engineered specifically to stand up beautifully under luxury high-definition cinematic lighting.</p>
+                <div class="detail-list">
+                    <div class="detail-item">
+                        <h4>Premium Product Kits</h4>
+                        <p>Exclusively featuring curated premium global collections like Chanel, Dior, MAC, and Charlotte Tilbury.</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/916291275473" target="_blank" class="btn-minimal">Book Session</a>
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="service-row reverse reveal">
+            <div class="service-image-wrapper">
+                <img src="makeup-image/party.jpg" class="circle-frame" alt="Bridal Party Services">
+            </div>
+            <div class="service-text">
+                <span class="service-tag">Cohesive Artistry</span>
+                <h2>Bridal Party Services</h2>
+                <p>Elevating your entire circle with synchronized luxury aesthetics. Our skilled team provides elegant party makeup, cocktail styling, and premium draping services that look breathtaking in group portraits and wedding films.</p>
+                <div class="detail-list">
+                    <div class="detail-item">
+                        <h4>Team Alignment</h4>
+                        <p>Multiple senior stylists working concurrently to ensure your family timeline stays perfectly structured.</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/916291275473" target="_blank" class="btn-minimal">Get Quote</a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Package Architecture Section -->
+    <section class="packages-section reveal" id="packages">
+        <div class="packages-intro">
+            <span class="service-tag">Pricing Options</span>
+            <h2>Choose Your Package</h2>
+            <p>Select an exquisitely curated layout that elegantly accommodates your ceremony timelines and high-end aesthetic goals.</p>
+        </div>
+
+        <div class="arch-grid">
+            <!-- Card 1 -->
+            <div class="arch-card">
+                <span class="price-tag">₹15k</span>
+                <h3>Sangeet / Party</h3>
+                <p class="desc">Chic luxury styling for pre-wedding celebrations and events.</p>
+                <div class="feature-lines">
+                    <p>HD Premium Airbrush / Manual</p>
+                    <p>Hairstyling & Extensions Fix</p>
+                    <p>Basic Outfit Draping</p>
+                    <p>Premium Synthetic Lashes Included</p>
+                </div>
+                <a href="https://wa.me/916291275473" target="_blank" class="btn-minimal">Select</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="arch-card">
+                <span class="price-tag">₹25k</span>
+                <h3>Ultra Bridal</h3>
+                <p class="desc">High-definition masterpiece curation designed specifically for the main wedding night.</p>
+                <div class="feature-lines">
+                    <p>Luxury International Kit Routine</p>
+                    <p>Advanced HD Waterproof Base</p>
+                    <p>Luxury Hair Designing & Floral</p>
+                    <p>Premium Bridal Saree/Dupatta Draping</p>
+                </div>
+                <a href="https://wa.me/916291275473" target="_blank" class="btn-minimal">Select</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="arch-card">
+                <span class="price-tag">₹45k</span>
+                <h3>Divine Royal</h3>
+                <p class="desc">Comprehensive multi-event flagship luxury masterclass signature look package.</p>
+                <div class="feature-lines">
+                    <p>Looks by Senior Celebrity Artist</p>
+                    <p>Premium Mink Lashes & Lens Fix</p>
+                    <p>Complete Luxury Skin Prep Therapy</p>
+                    <p>Sangeet + Wedding Main Day Looks</p>
+                </div>
+                <a href="https://wa.me/916291275473" target="_blank" class="btn-minimal">Select</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section reveal">
+        <div class="packages-intro">
+            <span class="service-tag">Visual Portfolio</span>
+            <h2>Artistry In Detail</h2>
+        </div>
+        <div class="gallery-grid">
+            <img src="makeup-image/makeup (49).jpg" class="gallery-item" alt="Portfolio Highlight 1">
+            <img src="makeup-image/makeup (65).jpg" class="gallery-item" alt="Portfolio Highlight 2">
+            <img src="makeup-image/makeup (71).jpg" class="gallery-item" alt="Portfolio Highlight 3">
+            <img src="makeup-image/makeup (53).jpg" class="gallery-item" alt="Portfolio Highlight 4">
+            <img src="makeup-image/makeup (78).jpg" class="gallery-item" alt="Portfolio Highlight 5">
+            <img src="makeup-image/makeup (81).jpg" class="gallery-item" alt="Portfolio Highlight 6">
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section reveal">
+        <div class="testimonials-grid">
+            <div class="minimal-test-card">
+                <div class="stars">★★★★★</div>
+                <p>"The bridal makeup was incredibly lightweight but looked absolutely ethereal in our 4K cinematic film highlight. Truly masterful team!"</p>
+                <h4>— Sneha Ghoshal</h4>
+            </div>
+            <div class="minimal-test-card">
+                <div class="stars">★★★★★</div>
+                <p>"They coordinated both photography and makeup timelines perfectly. No rush, no stress, and an absolute premium look that lasted all night."</p>
+                <h4>— Riya Chakraborty</h4>
+            </div>
+            <div class="minimal-test-card">
+                <div class="stars">★★★★★</div>
+                <p>"Exceptional handling of my bridal party. Every single look looked elegant without appearing overly dramatic or heavy."</p>
+                <h4>— Ananya Das</h4>
+            </div>
+            <div class="minimal-test-card">
+                <div class="stars">★★★★★</div>
+                <p>"Choosing their integrated team saved me hours of coordination. The base makeup was completely flawless in person and on camera!"</p>
+                <h4>— Priya Sen</h4>
+            </div>
+        </div>
+        <div class="bg-watermark">Testimonials</div>
+    </section>
+
+    <!-- Exact Footer (Matching Index Page) -->
+    <footer class="bg-dark pt-16 pb-8 border-t border-solid border-gray-800 border-x-0 border-b-0 text-left w-full" id="footer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                
+                <!-- Column 1: Logo & Socials -->
+                <div class="flex flex-col items-start text-left">
+                    <img src="images/logow.png" alt="Harvisha Pictures logo" class="h-12 w-auto mb-6">
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6 text-left">
+                        Crafting timeless love stories with artistic excellence.<br>
+                        Every moment captured is a testament to the beauty of human connection and the power of love.
+                    </p>
+                    <div class="flex justify-start gap-4 w-full">
+                        <a href="https://www.instagram.com/harvisha_pictures/" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="https://facebook.com/harvisha_pictures" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="https://www.youtube.com/@harvisha_pictures" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube text-xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="flex flex-col items-start text-left">
+                    <h4 class="text-accent font-bold text-lg mb-6">Quick Links</h4>
+                    <ul class="space-y-4 text-sm w-full list-none p-0 m-0">
+                        <li><a href="https://harvishapictures.in/booking/" class="text-gray-300 hover:text-accent transition">Booking</a></li>
+                        <li><a href="https://harvishapictures.in/clientlogin/" class="text-gray-300 hover:text-accent transition">Client login</a></li>
+                        <li><a href="https://harvishapictures.in/adminpanel/" class="text-gray-300 hover:text-accent transition">Admin Panel</a></li>
+                        <li><a href="https://harvishapictures.in/blogs/" class="text-gray-300 hover:text-accent transition">Blogs</a></li>
+                        <li><a href="https://harvishapictures.in/policy/" class="text-gray-300 hover:text-accent transition">Privacy Policy</a></li>
+                        <li><a href="https://harvishapictures.in/founder/" class="text-gray-300 hover:text-accent transition">Meet The Founder</a></li>
+                        <li><a href="#footer" class="text-gray-300 hover:text-accent transition">Contact</a></li>
+                        <li><a href="https://harvishapictures.in/career" class="text-gray-300 hover:text-accent transition">Career</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact -->
+                <div class="flex flex-col items-start text-left">
+                    <h4 class="text-accent font-bold text-lg mb-6">Contact</h4>
+                    <ul class="space-y-4 text-sm w-full list-none p-0 m-0">
+                        <li class="flex items-center justify-start gap-3">
+                            <i class="far fa-envelope text-accent"></i> 
+                            <a href="mailto:info@harvishapictures.in" class="text-gray-300 hover:text-accent transition">info@harvishapictures.in</a>
+                        </li>
+                        <li class="flex items-center justify-start gap-3">
+                            <i class="far fa-envelope text-accent"></i> 
+                            <a href="mailto:hello@harvishapictures.in" class="text-gray-300 hover:text-accent transition">hello@harvishapictures.in (Harsh)</a>
+                        </li>
+                        <li class="flex items-center justify-start gap-3">
+                            <i class="fas fa-phone-alt text-accent"></i> 
+                            <a href="tel:+916291275473" class="text-gray-300 hover:text-accent transition">+91 62912 75473</a>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+        </div>
+
+        <!-- Copyright Bar -->
+        <div class="border-t border-solid border-gray-800 border-x-0 border-b-0 pt-8 w-full flex justify-center px-4">
+            <p class="text-xs text-gray-500 text-center m-0">© 2026 Harvisha Pictures. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Action Button -->
+    <a href="https://wa.me/916291275473?text=Hi%20Harsh!%20I'm%20looking%20for%20a%20makeup%20artist%20for%20my%20event." target="_blank" class="whatsapp" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Scroll Reveal Action
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 80;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        document.addEventListener("DOMContentLoaded", reveal);
+
+        // Exact Main Page Mobile Menu Logic
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        if(mobileMenu && navMenu) {
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('is-active');
+                navMenu.classList.toggle('nav-active');
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('is-active');
+                    navMenu.classList.remove('nav-active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
