@@ -59,6 +59,15 @@
             text-decoration: none;
         }
 
+        /* --- GLOBAL LIQUID GLASS CLASS --- */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        }
+
         /* ==========================================================
            100% EXACT NAVBAR CSS COPIED FROM MAIN PAGE LINE-BY-LINE
            ========================================================== */
@@ -163,14 +172,9 @@
         .editorial-card {
             position: relative;
             z-index: 2;
-            background: rgba(253, 251, 247, 0.92);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             padding: 60px 50px;
             max-width: 500px;
-            border-radius: 8px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
             opacity: 0;
             transform: translateX(-40px);
             animation: slideInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.4s;
@@ -197,9 +201,10 @@
 
         .editorial-card p {
             font-size: 15px;
-            color: #555;
+            color: #444;
             margin-bottom: 40px;
             line-height: 1.7;
+            font-weight: 500;
         }
 
         .btn-editorial {
@@ -262,8 +267,9 @@
             height: 380px;
             border-radius: 50%;
             object-fit: cover;
-            border: 15px solid #fff;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            border: 15px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+            backdrop-filter: blur(5px);
         }
 
         .service-text {
@@ -333,7 +339,7 @@
 
         /* --- Package Section --- */
         .packages-section {
-            background-color: #f5f0e6;
+            background: linear-gradient(135deg, #f5f0e6 0%, #fae8e0 100%);
             padding: 100px 8%;
             text-align: center;
         }
@@ -363,11 +369,8 @@
         }
 
         .arch-card {
-            background: #fdfbf7;
             padding: 50px 30px;
             border-radius: 150px 150px 40px 40px;
-            border: 1px solid rgba(0,0,0,0.03);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
             transition: transform 0.3s ease;
         }
 
@@ -392,13 +395,14 @@
 
         .arch-card .desc {
             font-size: 13px;
-            color: #777;
+            color: #555;
             margin-bottom: 25px;
             height: 40px;
+            font-weight: 500;
         }
 
         .feature-lines {
-            border-top: 1px dashed #e0dacb;
+            border-top: 1px dashed rgba(0,0,0,0.15);
             padding-top: 20px;
             margin-bottom: 30px;
         }
@@ -406,7 +410,8 @@
         .feature-lines p {
             font-size: 14px;
             margin-bottom: 12px;
-            color: #444;
+            color: #333;
+            font-weight: 500;
         }
 
         /* --- Gallery Section --- */
@@ -426,12 +431,13 @@
             width: 100%;
             height: 380px;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         /* --- Testimonials --- */
         .testimonials-section {
-            background-color: #f2ebd9;
+            background: linear-gradient(135deg, #f2ebd9 0%, #e8efe9 100%);
             padding: 100px 8%;
             position: relative;
         }
@@ -443,7 +449,7 @@
             transform: translateX(-50%);
             font-family: 'Playfair Display', serif;
             font-size: 12vw;
-            color: rgba(0, 0, 0, 0.02);
+            color: rgba(0, 0, 0, 0.03);
             white-space: nowrap;
             pointer-events: none;
             width: 100%;
@@ -461,10 +467,8 @@
         }
 
         .minimal-test-card {
-            background: #fff;
             padding: 40px;
-            border-radius: 4px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border-radius: 12px;
         }
 
         .minimal-test-card .stars {
@@ -477,9 +481,10 @@
         .minimal-test-card p {
             font-style: italic;
             font-size: 14px;
-            color: #444;
+            color: #333;
             margin-bottom: 20px;
             line-height: 1.7;
+            font-weight: 500;
         }
 
         .minimal-test-card h4 {
@@ -487,6 +492,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #111;
+            font-weight: 600;
         }
 
         /* --- WhatsApp Floating Button --- */
@@ -527,7 +533,7 @@
         }
 
         /* ==========================================================
-           100% EXACT MEDIA QUERIES COPIED FROM MAIN PAGE
+           MOBILE & TABLET RESPONSIVE OPTIMIZATION
            ========================================================== */
         @media (max-width: 1024px) {
             header {
@@ -536,12 +542,6 @@
             nav a {
                 margin-left: 15px;
                 font-size: 12px;
-            }
-        }
-        
-        @media(max-width: 1024px) {
-            header {
-                padding: 15px 5%;
             }
             .menu-toggle { 
                 display: flex; 
@@ -552,7 +552,7 @@
                 left: 0;
                 width: 100vw;
                 height: 100vh;
-                background: rgba(255, 255, 255, 0.98);
+                background: rgba(255, 255, 255, 0.95);
                 backdrop-filter: blur(15px);
                 -webkit-backdrop-filter: blur(15px);
                 flex-direction: column;
@@ -569,8 +569,6 @@
                 opacity: 1;
                 pointer-events: auto;
                 transform: scale(1);
-                max-height: none;
-                padding: 0;
             }
             nav a {
                 margin: 0;
@@ -578,9 +576,7 @@
                 font-weight: 500;
                 letter-spacing: 1.5px;
                 color: #111111;
-                width: auto;
                 text-align: center;
-                text-transform: uppercase;
             }
             .menu-toggle.is-active {
                 position: relative;
@@ -594,7 +590,6 @@
             .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
         }
 
-        /* --- MOBILE LAYOUT FOR MAKEUP ELEMENTS --- */
         @media(max-width: 992px) {
             .service-row, .service-row.reverse {
                 flex-direction: column !important;
@@ -606,68 +601,78 @@
             }
         }
 
+        /* PHONE OPTIMIZATION & SWIPEABLE PACKAGES */
         @media(max-width: 768px) {
+            /* Hero adjustments */
             .editorial-hero { 
                 height: 100vh; 
-                padding: 40px 5%; 
+                padding: 30px 5%; 
                 justify-content: center;
                 margin-top: 0;
             }
-            
-            .hero-image-bg::after { 
-                background: rgba(0,0,0,0.5); 
-            }
-            
+            .hero-image-bg::after { background: rgba(0,0,0,0.5); }
             .editorial-card { 
-                padding: 40px 25px; 
+                width: 100%;
+                padding: 35px 25px; 
                 text-align: center; 
                 transform: translateY(30px);
                 animation: slideUpMobile 1s ease forwards 0.3s;
             }
-
             @keyframes slideUpMobile {
                 from { opacity: 0; transform: translateY(30px); }
                 to { opacity: 1; transform: translateY(0); }
             }
-
             .editorial-card h1 { font-size: 38px; }
             .editorial-card p { font-size: 14px; margin-bottom: 25px; }
 
-            .circle-frame { 
-                width: 260px; 
-                height: 260px; 
-                border-width: 8px; 
-            }
-
-            .service-text h2 { font-size: 28px; }
+            /* Services adjustments */
+            .makeup-container { padding: 60px 5% 40px 5%; }
+            .circle-frame { width: 280px; height: 280px; border-width: 8px; }
+            .service-text h2 { font-size: 32px; }
             .service-text p { font-size: 14px; }
+            .service-row { margin-bottom: 60px; }
 
+            /* Packages Swipeable Settings */
+            .packages-section { padding: 60px 0; }
+            .packages-intro { padding: 0 5%; margin-bottom: 40px; }
+            .packages-intro h2 { font-size: 32px; }
+            
             .arch-grid {
-                grid-template-columns: 1fr;
-                padding: 0 10px;
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x mandatory;
+                gap: 20px;
+                padding: 10px 5% 30px 5%; /* Side padding allows for nice overflow scrolling */
+                scrollbar-width: none;
+            }
+            .arch-grid::-webkit-scrollbar {
+                display: none;
             }
             .arch-card {
-                padding: 40px 20px;
-                border-radius: 130px 130px 30px 30px;
+                flex: 0 0 85%; /* 85% width lets the user see the next card peeking out */
+                scroll-snap-align: center;
+                padding: 40px 25px;
+                border-radius: 120px 120px 30px 30px;
             }
+            .arch-card .desc { height: auto; margin-bottom: 20px; }
 
-            .gallery-grid { 
-                grid-template-columns: 1fr 1fr;
-                gap: 10px; 
-            }
-            .gallery-item { height: 200px; }
+            /* Gallery adjustments */
+            .gallery-section { padding: 60px 5%; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .gallery-item { height: 180px; }
 
-            .testimonials-grid { 
-                grid-template-columns: 1fr; 
-                gap: 20px;
-            }
-            .minimal-test-card { padding: 25px; }
+            /* Testimonials adjustments */
+            .testimonials-section { padding: 60px 5%; }
+            .testimonials-grid { grid-template-columns: 1fr; gap: 20px; }
+            .minimal-test-card { padding: 30px 20px; text-align: center; }
             .bg-watermark { display: none; }
 
             .whatsapp {
-                width: 54px; 
-                height: 54px;
-                font-size: 26px;
+                width: 50px; 
+                height: 50px;
+                font-size: 24px;
                 bottom: 20px;
                 right: 20px;
             }
@@ -701,7 +706,7 @@
     <!-- UNIQUE EDITORIAL/MAGAZINE HERO SECTION -->
     <section class="editorial-hero">
         <div class="hero-image-bg"></div>
-        <div class="editorial-card">
+        <div class="editorial-card glass-effect">
             <span class="hero-tagline">Exquisite Artistry</span>
             <h1>Luxury Bridal<br>Makeup</h1>
             <p>Enhancing your natural elegance with world-class products and cinematic precision for your special day.</p>
@@ -715,7 +720,7 @@
         <!-- Row 1 -->
         <div class="service-row reveal">
             <div class="service-image-wrapper">
-                <img src="../makeup-image/bridal.jpg" class="circle-frame" alt="Bridal Makeup Application">
+                <img src="../makeup-image/bridal.jpg" class="circle-frame" style="object-position: center 15%;" alt="Bridal Makeup Application">
             </div>
             <div class="service-text">
                 <span class="service-tag">Luxury Services</span>
@@ -734,7 +739,7 @@
         <!-- Row 2 -->
         <div class="service-row reverse reveal">
             <div class="service-image-wrapper">
-                <img src="../makeup-image/party.jpg" class="circle-frame" alt="Bridal Party Services">
+                <img src="../makeup-image/party.jpg" class="circle-frame" style="object-position: center 15%;" alt="Bridal Party Services">
             </div>
             <div class="service-text">
                 <span class="service-tag">Cohesive Artistry</span>
@@ -752,7 +757,7 @@
 
     </main>
 
-    <!-- Package Architecture Section -->
+    <!-- Package Architecture Section (Swipeable on Mobile) -->
     <section class="packages-section reveal" id="packages">
         <div class="packages-intro">
             <span class="service-tag">Pricing Options</span>
@@ -762,7 +767,7 @@
 
         <div class="arch-grid">
             <!-- Card 1 -->
-            <div class="arch-card">
+            <div class="arch-card glass-effect">
                 <span class="price-tag">₹15k</span>
                 <h3>Sangeet / Party</h3>
                 <p class="desc">Chic luxury styling for pre-wedding celebrations and events.</p>
@@ -776,7 +781,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="arch-card">
+            <div class="arch-card glass-effect">
                 <span class="price-tag">₹25k</span>
                 <h3>Ultra Bridal</h3>
                 <p class="desc">High-definition masterpiece curation designed specifically for the main wedding night.</p>
@@ -790,7 +795,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="arch-card">
+            <div class="arch-card glass-effect">
                 <span class="price-tag">₹45k</span>
                 <h3>Divine Royal</h3>
                 <p class="desc">Comprehensive multi-event flagship luxury masterclass signature look package.</p>
@@ -824,22 +829,22 @@
     <!-- Testimonials Section -->
     <section class="testimonials-section reveal">
         <div class="testimonials-grid">
-            <div class="minimal-test-card">
+            <div class="minimal-test-card glass-effect">
                 <div class="stars">★★★★★</div>
                 <p>"The bridal makeup was incredibly lightweight but looked absolutely ethereal in our 4K cinematic film highlight. Truly masterful team!"</p>
                 <h4>— Sneha Ghoshal</h4>
             </div>
-            <div class="minimal-test-card">
+            <div class="minimal-test-card glass-effect">
                 <div class="stars">★★★★★</div>
                 <p>"They coordinated both photography and makeup timelines perfectly. No rush, no stress, and an absolute premium look that lasted all night."</p>
                 <h4>— Riya Chakraborty</h4>
             </div>
-            <div class="minimal-test-card">
+            <div class="minimal-test-card glass-effect">
                 <div class="stars">★★★★★</div>
                 <p>"Exceptional handling of my bridal party. Every single look looked elegant without appearing overly dramatic or heavy."</p>
                 <h4>— Ananya Das</h4>
             </div>
-            <div class="minimal-test-card">
+            <div class="minimal-test-card glass-effect">
                 <div class="stars">★★★★★</div>
                 <p>"Choosing their integrated team saved me hours of coordination. The base makeup was completely flawless in person and on camera!"</p>
                 <h4>— Priya Sen</h4>
