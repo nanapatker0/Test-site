@@ -94,39 +94,13 @@
         }
         .dropdown-list label:hover { background: rgba(255,255,255,.08); }
         
-        /* Custom Checkbox Design */
-        .dropdown-list input[type="checkbox"] {
-            -webkit-appearance: none;
-            appearance: none;
-            margin-right: 15px;
-            min-width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.05);
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-        
-        /* Jab Checkbox Select Ho (Active State) */
-        .dropdown-list input[type="checkbox"]:checked {
-            background-color: #d4af37;
-            border-color: #d4af37;
-        }
-        
-        /* Checkmark (Tick) ka design */
-        .dropdown-list input[type="checkbox"]:checked::after {
-            content: '';
-            width: 5px;
-            height: 10px;
-            border: solid #111; /* Dark color ka tick mark */
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-            margin-bottom: 2px;
+        /* Original Simple Checkbox Design */
+        .dropdown-list input[type="checkbox"] { 
+            margin-right: 15px; 
+            width: 18px; 
+            height: 18px; 
+            accent-color: #d4af37; 
+            cursor: pointer; 
         }
 
         #event-error { color: #ff4d4d; font-size: 12px; display: none; margin-top: 5px; }
