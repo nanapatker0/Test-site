@@ -1,362 +1,241 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#111111">
-    <meta name="description" content="Premium Event Management & Curation by Harvisha Pictures - Coming Soon.">
-    <title>Event Services | Harvisha Pictures</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="512x512" href="../images/favicon.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="../images/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: #111111; 
-            color: #ffffff;
-            line-height: 1.6;
-            overflow: hidden;
-            -webkit-font-smoothing: antialiased;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .coming-soon-hero {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(rgba(17, 17, 17, 0.75), rgba(17, 17, 17, 0.85)), url("../images/eventbg.png");
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-        }
-
-        header {
-            position: relative;
-            width: 100%;
-            padding: 25px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .logo img {
-            max-height: 45px; 
-            width: auto;
-            display: block;
-        }
-
-        .back-home {
-            color: #ffffff;
-            font-size: 12px;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s ease;
-            text-decoration: none;
-        }
-
-        .back-home:hover {
-            color: #d4af37;
-        }
-
-        .main-container {
-            position: relative;
-            z-index: 5;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-        }
-
-        .badge {
-            background: rgba(212, 175, 55, 0.15);
-            color: #d4af37;
-            padding: 6px 18px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            margin-bottom: 25px;
-            opacity: 0;
-            animation: slideUpFade 1s ease forwards 0.2s;
-        }
-
-        h1 {
-            font-family: "Playfair Display", serif;
-            font-size: 54px;
-            font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            opacity: 0;
-            animation: slideUpFade 1s ease forwards 0.4s;
-        }
-
-        h1 span {
-            color: #d4af37;
-        }
-
-        .tagline {
-            font-size: 16px;
-            color: #e2e8f0;
-            max-width: 550px;
-            margin-bottom: 40px;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            opacity: 0;
-            animation: slideUpFade 1s ease forwards 0.6s;
-        }
-
-        .preview-features {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 45px;
-            opacity: 0;
-            animation: slideUpFade 1s ease forwards 0.8s;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #cbd5e1;
-        }
-
-        .feature-item i {
-            color: #d4af37;
-        }
-
-        .notify-form-wrapper {
-            width: 100%;
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-            opacity: 0;
-            animation: slideUpFade 1s ease forwards 1s;
-        }
-
-        .notify-form-wrapper h3 {
-            font-family: "Playfair Display", serif;
-            font-size: 20px;
-            margin-bottom: 15px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .notify-form-wrapper input {
-            flex-grow: 1;
-            height: 50px;
-            padding: 0 20px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 30px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            color: #ffffff;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .notify-form-wrapper input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .submit-btn {
-            height: 50px;
-            padding: 0 25px;
-            background: #d4af37;
-            color: #111111;
-            border: none;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .submit-btn:hover {
-            background: #f1c430;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        footer {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            text-align: center;
-            padding: 25px 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            background: rgba(17, 17, 17, 0.6);
-            backdrop-filter: blur(5px);
-        }
-
-        footer p {
-            font-size: 12px;
-            opacity: 0.6;
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                overflow-y: auto;
-                height: auto;
-                min-height: 100vh;
-            }
-            .main-container {
-                padding: 60px 20px;
-            }
-            h1 { font-size: 38px; }
-            .tagline { font-size: 14px; }
-            .preview-features {
-                flex-direction: column;
-                gap: 15px;
-                margin-bottom: 35px;
-            }
-            .form-group {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .notify-form-wrapper input, .submit-btn {
-                width: 100%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Film, Television & Digital Media Production - Complete Textbook</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fff;
+    padding: 10px;
+  }
+  h1 { color: #0d47a1; border-bottom: 3px solid #0d47a1; padding-bottom: 5px; page-break-before: always; }
+  h1:first-of-type { page-break-before: avoid; }
+  h2 { color: #1565c0; border-bottom: 1.5px solid #1565c0; padding-bottom: 3px; margin-top: 25px; }
+  h3 { color: #1e88e5; margin-top: 20px; }
+  h4 { color: #0d47a1; margin-bottom: 5px; text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; }
+  pre, code {
+    font-family: 'Courier New', Courier, monospace;
+    background: #f4f6f8;
+    border: 1px solid #d1d5db;
+    border-left: 4px solid #1e88e5;
+    padding: 10px;
+    display: block;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.85em;
+    border-radius: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 0.9em;
+  }
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+  }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 5px; }
+  .box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 15px 0;
+  }
+</style>
 </head>
 <body>
 
-    <div class="coming-soon-hero"></div>
+<h1>Film, Television & Digital Media Production</h1>
+<h2>Comprehensive Academic Textbook & Field Manual</h2>
 
-    <header>
-        <a href="../" class="logo">
-            <img src="../images/logow.png" alt="Harvisha Pictures Logo">
-        </a>
-        <a href="../index.html" class="back-home">
-            <i class="fa-solid fa-arrow-left-long"></i> Back To Studio
-        </a>
-    </header>
+<hr>
 
-    <div class="main-container">
-        <div class="badge">Expanding The Canvas</div>
-        <h1>Seamless Planning:<br><span>Luxury Event Services</span></h1>
-        <p class="tagline">From bespoke decor design and absolute timeline management to custom curation, we are building an end-to-end event production vertical. Experience stress-free, spectacular luxury coordination soon.</p>
-        
-        <div class="preview-features">
-            <div class="feature-item">
-                <i class="fa-solid fa-gantt"></i>
-                <span>Complete Concept Planning</span>
-            </div>
-            <div class="feature-item">
-                <i class="fa-solid fa-palette"></i>
-                <span>Bespoke Decor Design</span>
-            </div>
-            <div class="feature-item">
-                <i class="fa-solid fa-handshake"></i>
-                <span>Vendor Coordination</span>
-            </div>
-        </div>
+<h1>SEMESTER 1 — FOUNDATION</h1>
 
-        <div class="notify-form-wrapper">
-            <h3>Get Early Access & Consultations</h3>
-            <form id="notifyForm" class="form-group">
-                <input type="hidden" name="Inquiry Type" value="Event Services Pre-Launch Notification">
-                <input type="email" name="Email" placeholder="Enter Your Email Address" required>
-                <button type="submit" class="submit-btn">Notify Me</button>
-            </form>
-        </div>
-    </div>
+<h2>MODULE 1: ACTING & PRESENTATION</h2>
 
-    <footer>
-        <p>© 2026 Harvisha Pictures | Complete Production Coming Soon</p>
-    </footer>
+<h3>1.1 Acting for Camera</h3>
 
-    <script>
-        const notifyForm = document.getElementById('notifyForm');
-        
-        notifyForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitBtn = notifyForm.querySelector('.submit-btn');
-            
-            submitBtn.innerHTML = "Processing...";
-            submitBtn.disabled = true;
+<h4>Concept</h4>
+<p>Acting for the camera requires an understanding of scale, physical restraint, and spatial geometry. Unlike theater, where performances must project to the back of an auditorium, camera acting relies on proximity, micro-expressions, and spatial awareness relative to a dynamic lens.</p>
 
-            const emailValue = notifyForm.querySelector('input[name="Email"]').value;
-            const inquiryValue = notifyForm.querySelector('input[name="Inquiry Type"]').value;
+<h4>Detailed Theory</h4>
+<ul>
+  <li><strong>What is Acting?</strong> Living truthfully under imaginary circumstances. Requires internalizing character motivation (super-objective), scene objectives, and tactics.</li>
+  <li><strong>Stage vs. Camera Acting:</strong> Stage relies on broad gestures and vocal projection; camera acting is internal, restrained, and relies on subtle facial details and vocal intimacy.</li>
+  <li><strong>Natural Performance:</strong> Achieved through active listening rather than waiting for dialogue cues.</li>
+  <li><strong>Facial Expressions & Gestures:</strong> Magnified by the camera lens; gestures must stay within framing boundaries.</li>
+  <li><strong>Eyeline:</strong> Spatial vector aligning actor's gaze with off-camera subjects across edits.</li>
+</ul>
 
-            fetch('https://script.google.com/macros/s/AKfycbxwu72AMXx-e7CXEtTvbEr4JTQkMIFu9L2lM0iYYsZk0ve_2ngyaod4hlirYQ0Ap3Kr/exec', {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "Email": emailValue,
-                    "Inquiry Type": inquiryValue
-                })
-            })
-            .then(response => {
-                alert('Fantastic! We have noted your email and will reach out with preview packages and initial launch slots.');
-                notifyForm.reset();
-            })
-            .catch(error => { 
-                alert('Oops! There was a network issue submitting your form.'); 
-                console.error(error);
-            })
-            .then(() => {
-                submitBtn.innerHTML = "Notify Me";
-                submitBtn.disabled = false;
-            });
-        });
-    </script>
+<pre>
+       [ CAMERA ]
+          |  \
+          |   \ (Lens Axis)
+          v    \
+    [ ACTOR A ]---> (Eyeline Vector: 2 Inches Left of Lens)
+                  \
+                   --> [ ACTOR B (Off-Camera Stand-In) ]
+</pre>
+
+<h3>1.2 Presentation Skills</h3>
+<p>Voice modulation, dialogue delivery, body posture, and controlled pauses are critical for projecting clarity and dramatic authority on screen.</p>
+
+<h3>1.3 Acting for Different Shots</h3>
+<pre>
++-------------------------------------------------------+
+| EWS (Extreme Wide): Landscape dominates; movement key |
+|   +-----------------------------------------------+   |
+|   | LS (Long Shot): Full body; spatial awareness   |   |
+|   |   +---------------------------------------+   |   |
+|   |   | MS (Medium): Waist up; balanced scale |   |   |
+|   |   |   +-------------------------------+   |   |   |
+|   |   |   | MCU (Medium Close): Chest up  |   |   |   |
+|   |   |   |   +-----------------------+   |   |   |   |
+|   |   |   |   | CU (Close-Up): Face   |   |   |   |   |
+|   |   |   |   |   +---------------+   |   |   |   |   |
+|   |   |   |   |   | ECU: Eyes/Detail |   |   |   |   |   |
+|   |   |   |   +---------------+   |   |   |   |   |   |
+|   |   |   |   +-----------------------+   |   |   |   |
+|   |   |   +-------------------------------+   |   |   |
+|   |   +---------------------------------------+   |   |
+|   +-----------------------------------------------+   |
++-------------------------------------------------------+
+</pre>
+
+<h2>MODULE 2: HISTORY OF CINEMA</h2>
+
+<h3>2.3 World Cinema Movements</h3>
+<table>
+  <tr>
+    <th>Movement</th>
+    <th>Period</th>
+    <th>Key Visual/Formal Traits</th>
+  </tr>
+  <tr>
+    <td>German Expressionism</td>
+    <td>1910s–1920s</td>
+    <td>Stylized painted sets, high contrast shadows, psychological distortion.</td>
+  </tr>
+  <tr>
+    <td>Soviet Montage</td>
+    <td>1920s</td>
+    <td>Juxtaposition editing, metric/intellectual cutting rhythm.</td>
+  </tr>
+  <tr>
+    <td>Italian Neorealism</td>
+    <td>1940s–1950s</td>
+    <td>On-location shooting, non-professional actors, social realism.</td>
+  </tr>
+  <tr>
+    <td>French New Wave</td>
+    <td>1950s–1960s</td>
+    <td>Jump cuts, handheld camera, meta-cinema techniques.</td>
+  </tr>
+</table>
+
+<h2>MODULE 3: PRODUCTION I — BLOCKING, COMPOSITION & CONTINUITY</h2>
+
+<h3>3.5 Continuity & 180-Degree Rule</h3>
+<pre>
+       [ ACTOR A ]  =========================  [ ACTOR B ]
+                            180-DEGREE LINE
+   -----------------------------------------------------------------
+     [ CAM 1 ] (Valid)                       [ CAM 2 ] (Valid)
+   
+                           [ CAM 3 ] (INVALID: Crosses Line)
+</pre>
+
+<h2>MODULE 4: DIGITAL PHOTOGRAPHY — EXPOSURE & LIGHTING</h2>
+
+<h3>4.2 Exposure Triangle</h3>
+<pre>
+                          [ APERTURE ]
+                         (Depth of Field)
+                              /\
+                             /  \
+                            /    \
+                           /      \
+                          /        \
+   [ SHUTTER SPEED ] <--------------> [ ISO ]
+   (Motion Blur)                      (Sensor Gain / Digital Noise)
+</pre>
+
+<h3>4.6 Three-Point Lighting System</h3>
+<pre>
+                                [ KEY LIGHT ] (45-Deg Off-Axis)
+                                      \
+                                       \
+                                        v
+[ BACK / RIM LIGHT ] --------> [ SUBJECT ] <-------- [ FILL LIGHT ]
+(Separates from BG)                                 (Soft, Fills Shadows)
+</pre>
+
+<h2>MODULE 5: SCREENWRITING — THREE-ACT STRUCTURE</h2>
+<pre>
+       [ ACT I: SETUP ]           [ ACT II: CONFRONTATION ]            [ ACT III: RESOLUTION ]
+  (0% - 25% Runtime)               (25% - 75% Runtime)                  (75% - 100% Runtime)
+  
+  [EXPOSITION]                     [RISING ACTION]                       [CLIMAX]
+       |                                  |                                  |
+       v                                  v                                  v
+  (Inciting Incident) ------------> (Plot Point 1) ---> (Midpoint) ----> (Plot Point 2) -> [END]
+</pre>
+
+<h2>MODULE 6: ELEMENTS OF EDITING</h2>
+<table>
+  <tr>
+    <th>Cut Type</th>
+    <th>Edit Characteristics & Function</th>
+  </tr>
+  <tr>
+    <td>Straight Cut</td>
+    <td>Standard hard cut; continuous transition between two shots.</td>
+  </tr>
+  <tr>
+    <td>Jump Cut</td>
+    <td>Cut between two identical setups with minor time jump.</td>
+  </tr>
+  <tr>
+    <td>Match Cut</td>
+    <td>Cut linking two shots via matching shapes, actions, or themes.</td>
+  </tr>
+  <tr>
+    <td>Cross Cut</td>
+    <td>Alternates between two actions happening simultaneously.</td>
+  </tr>
+  <tr>
+    <td>Smash Cut</td>
+    <td>Abrupt transition from quiet to intense (or vice versa).</td>
+  </tr>
+</table>
+
+<hr>
+
+<h1>SEMESTER 6 — MASTER GLOSSARY & REVISION</h1>
+<ul>
+  <li><strong>180-Degree Rule:</strong> Preserves spatial consistency by keeping camera setups on one side of the axis line.</li>
+  <li><strong>Aperture:</strong> Lens diaphragm opening controlling light intake and depth of field ($f$-stops).</li>
+  <li><strong>Chiaroscuro:</strong> High contrast lighting emphasizing bold shadows and strong highlights.</li>
+  <li><strong>Dynamic Range:</strong> Span between brightest highlights and darkest shadows captured without clipping (measured in stops).</li>
+  <li><strong>Inverse-Square Law:</strong> Light intensity drops exponentially with distance ($I = P / 4\pi d^2$).</li>
+  <li><strong>Mise-en-Scène:</strong> Everything placed in front of the camera (lighting, props, costumes, staging).</li>
+</ul>
 
 </body>
 </html>
