@@ -61,22 +61,33 @@
         #success-message{display:none;text-align:center;padding:20px;background:rgba(37,211,102,.1);border:1px solid #25D366;border-radius:8px;margin-top:20px;color:#25D366}
         footer{background:#111;color:#fff;text-align:center;padding:40px 20px;border-top:1px solid rgba(255,255,255,.05)}
         .full-width{grid-column:1 / -1}
-        .dynamic-label{font-size:13px;color:rgba(255,255,255,.8);margin-bottom:10px;display:block;font-weight:500;}
         
-        /* New Checkbox Chips Styling (Replaces Dropdown) */
-        .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 10px; }
-        .checkbox-chip input { display: none; } /* Hide default checkbox */
-        .checkbox-chip span {
-            display: flex; align-items: center; justify-content: center;
-            padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 8px; font-size: 13px; color: rgba(255,255,255,0.8); cursor: pointer;
-            transition: all 0.3s ease; text-align: center; height: 100%; user-select: none;
+        /* Custom Smart Checkbox Dropdown */
+        .multiselect-container { position: relative; width: 100%; user-select: none; }
+        .select-box {
+            width: 100%; padding: 15px 20px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15);
+            border-radius: 8px; font-size: 14px; color: rgba(255,255,255,.4); cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center; height: 52px; transition: all 0.3s ease;
         }
-        .checkbox-chip input:checked + span {
-            background: rgba(212,175,55,0.15); border-color: #d4af37; color: #d4af37; font-weight: 600;
+        .select-box:hover { border-color: rgba(212,175,55,.5); }
+        .select-box.active { border-color: #d4af37; box-shadow: 0 0 0 4px rgba(212,175,55,.15); }
+        .select-box::after { content: '\25BC'; font-size: 10px; color: rgba(255,255,255,.5); transition: transform 0.3s; }
+        .select-box.open::after { transform: rotate(180deg); }
+        .dropdown-list {
+            position: absolute; top: calc(100% + 5px); left: 0; width: 100%; max-height: 250px; overflow-y: auto;
+            background: #1a1a1a; border: 1px solid rgba(212,175,55,.3); border-radius: 8px;
+            z-index: 100; display: none; padding: 10px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            scrollbar-width: thin; scrollbar-color: #d4af37 #1a1a1a;
         }
-        .checkbox-chip span:hover { background: rgba(255,255,255,0.1); }
-        #event-error { color: #ff4d4d; font-size: 12px; display: none; margin-top: 10px; }
+        .dropdown-list::-webkit-scrollbar { width: 6px; }
+        .dropdown-list::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+        .dropdown-list label {
+            display: flex; align-items: center; padding: 12px 20px; cursor: pointer; transition: background 0.2s;
+            font-size: 14px; color: #eee;
+        }
+        .dropdown-list label:hover { background: rgba(255,255,255,.08); }
+        .dropdown-list input[type="checkbox"] { margin-right: 15px; width: 18px; height: 18px; accent-color: #d4af37; cursor: pointer; }
+        #event-error { color: #ff4d4d; font-size: 12px; display: none; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -99,7 +110,7 @@
             <p class="booking-subtitle">Let's Create Cinematic Magic Together</p>
 
             <div class="booking-container">
-                <form id="google-sheet-form" class="booking-form">
+                <form id="booking-form" class="booking-form">
                     <div class="form-grid">
                         <input type="text" name="Name" placeholder="Full Name" required>
                         <input type="email" name="Email" placeholder="Email Address" required>
@@ -139,27 +150,29 @@
                             </select>
                         </div>
 
-                        <!-- Dynamic Field: Event Services (Chip Checkboxes) -->
+                        <!-- Dynamic Field: Event Services (Smart Dropdown Checkbox) -->
                         <div id="event-services-container" class="full-width" style="display: none;">
-                            <span class="dynamic-label">Select Event Services (Choose multiple if needed):</span>
-                            <div class="checkbox-grid">
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Wedding Decoration / Decor"><span>Wedding Decoration / Decor</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="DJ & Music"><span>DJ & Music</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Sound System"><span>Sound System</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Lighting"><span>Lighting</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Stage Setup"><span>Stage Setup</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Floral Decoration"><span>Floral Decoration</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Mehendi Setup"><span>Mehendi Setup</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Haldi Setup"><span>Haldi Setup</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Sangeet Setup"><span>Sangeet Setup</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Wedding Entry Setup"><span>Wedding Entry Setup</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Photobooth / Selfie Booth"><span>Photobooth / Selfie Booth</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Catering & Food Management"><span>Catering & Food Management</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Venue / Banquet Arrangement"><span>Venue / Banquet Arrangement</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Bride & Groom Entry"><span>Bride & Groom Entry</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Event Coordination / Management"><span>Event Coordination / Management</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Complete Event Management"><span>Complete Event Management</span></label>
-                                <label class="checkbox-chip"><input type="checkbox" class="event-cb" value="Full Wedding Event Package"><span>Full Wedding Event Package</span></label>
+                            <div class="multiselect-container">
+                                <div class="select-box" id="event-select-box">Select Event Services...</div>
+                                <div class="dropdown-list" id="event-dropdown-list">
+                                    <label><input type="checkbox" class="event-cb" value="Wedding Decoration / Decor"> Wedding Decoration / Decor</label>
+                                    <label><input type="checkbox" class="event-cb" value="DJ & Music"> DJ & Music</label>
+                                    <label><input type="checkbox" class="event-cb" value="Sound System"> Sound System</label>
+                                    <label><input type="checkbox" class="event-cb" value="Lighting"> Lighting</label>
+                                    <label><input type="checkbox" class="event-cb" value="Stage Setup"> Stage Setup</label>
+                                    <label><input type="checkbox" class="event-cb" value="Floral Decoration"> Floral Decoration</label>
+                                    <label><input type="checkbox" class="event-cb" value="Mehendi Setup"> Mehendi Setup</label>
+                                    <label><input type="checkbox" class="event-cb" value="Haldi Setup"> Haldi Setup</label>
+                                    <label><input type="checkbox" class="event-cb" value="Sangeet Setup"> Sangeet Setup</label>
+                                    <label><input type="checkbox" class="event-cb" value="Wedding Entry Setup"> Wedding Entry Setup</label>
+                                    <label><input type="checkbox" class="event-cb" value="Photobooth / Selfie Booth"> Photobooth / Selfie Booth</label>
+                                    <label><input type="checkbox" class="event-cb" value="Catering & Food Management"> Catering & Food Management</label>
+                                    <label><input type="checkbox" class="event-cb" value="Venue / Banquet Arrangement"> Venue / Banquet Arrangement</label>
+                                    <label><input type="checkbox" class="event-cb" value="Bride & Groom Entry"> Bride & Groom Entry</label>
+                                    <label><input type="checkbox" class="event-cb" value="Event Coordination / Management"> Event Coordination / Management</label>
+                                    <label><input type="checkbox" class="event-cb" value="Complete Event Management"> Complete Event Management</label>
+                                    <label><input type="checkbox" class="event-cb" value="Full Wedding Event Package"> Full Wedding Event Package</label>
+                                </div>
                             </div>
                             <span id="event-error">Please select at least one event service.</span>
                         </div>
@@ -183,59 +196,98 @@
         <p style="font-size: 13px; opacity: 0.7;">Wedding Photography & Cinematic Films</p>
     </footer>
 
-    <!-- Form Logic and Google Sheets Submission Script -->
+    <!-- Form Logic and Google Sheets/Mail Submission Script -->
     <script>
+        // Form Elements
         const serviceSelect = document.getElementById('service-select');
-        
         const photoContainer = document.getElementById('photo-package-container');
         const photoSelect = document.getElementById('photo-package');
-        
         const makeupContainer = document.getElementById('makeup-package-container');
         const makeupSelect = document.getElementById('makeup-package');
         
+        // Custom Multiselect Elements
         const eventContainer = document.getElementById('event-services-container');
+        const eventSelectBox = document.getElementById('event-select-box');
+        const eventDropdownList = document.getElementById('event-dropdown-list');
         const eventCheckboxes = document.querySelectorAll('.event-cb');
         const eventError = document.getElementById('event-error');
 
-        // Handle Dynamic Toggling & Resetting
+        // Toggle Custom Dropdown
+        eventSelectBox.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isVisible = eventDropdownList.style.display === 'block';
+            eventDropdownList.style.display = isVisible ? 'none' : 'block';
+            eventSelectBox.classList.toggle('open', !isVisible);
+            eventSelectBox.classList.toggle('active', !isVisible);
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!eventSelectBox.contains(e.target) && !eventDropdownList.contains(e.target)) {
+                eventDropdownList.style.display = 'none';
+                eventSelectBox.classList.remove('open');
+                eventSelectBox.classList.remove('active');
+            }
+        });
+
+        // Update box text when checkboxes change
+        eventCheckboxes.forEach(cb => {
+            cb.addEventListener('change', function() {
+                const checkedBoxes = Array.from(eventCheckboxes).filter(c => c.checked);
+                if (checkedBoxes.length === 0) {
+                    eventSelectBox.innerText = 'Select Event Services...';
+                    eventSelectBox.style.color = 'rgba(255,255,255,.4)';
+                } else if (checkedBoxes.length === 1) {
+                    eventSelectBox.innerText = checkedBoxes[0].value;
+                    eventSelectBox.style.color = '#fff';
+                } else {
+                    eventSelectBox.innerText = checkedBoxes.length + ' Services Selected';
+                    eventSelectBox.style.color = '#fff';
+                }
+                eventError.style.display = 'none';
+            });
+        });
+
+        // Handle Dynamic Visibility & Resetting
         serviceSelect.addEventListener('change', function() {
             const val = this.value;
 
-            // Arrays determining which service option triggers which fields
             const showPhoto = ['Photography Services', 'Photography + Makeup Services', 'Photography + Event Planning Services', 'Full Wedding Package'].includes(val);
             const showMakeup = ['Makeup Services', 'Photography + Makeup Services', 'Makeup + Event Planning Services', 'Full Wedding Package'].includes(val);
             const showEvent = ['Event Planning Services', 'Photography + Event Planning Services', 'Makeup + Event Planning Services', 'Full Wedding Package'].includes(val);
 
-            // Toggle Photography Field
             if (showPhoto) {
                 photoContainer.style.display = 'block';
             } else {
                 photoContainer.style.display = 'none';
-                photoSelect.selectedIndex = 0; // Reset
+                photoSelect.selectedIndex = 0;
             }
 
-            // Toggle Makeup Field
             if (showMakeup) {
                 makeupContainer.style.display = 'block';
             } else {
                 makeupContainer.style.display = 'none';
-                makeupSelect.selectedIndex = 0; // Reset
+                makeupSelect.selectedIndex = 0;
             }
 
-            // Toggle Event Planning Field
             if (showEvent) {
                 eventContainer.style.display = 'block';
             } else {
                 eventContainer.style.display = 'none';
+                eventDropdownList.style.display = 'none';
+                eventSelectBox.classList.remove('open', 'active');
                 eventError.style.display = 'none';
-                // Reset all checkboxes
+                
                 eventCheckboxes.forEach(cb => cb.checked = false);
+                eventSelectBox.innerText = 'Select Event Services...';
+                eventSelectBox.style.color = 'rgba(255,255,255,.4)';
             }
         });
 
-        // Form Submission Logic
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyQcu-3X8UvRYj-vUrlZbwgSVZGfEuThaY-r29cqkx0AOAa6q5EbtXIA8H7r7iO2aZe/exec';
-        const form = document.getElementById('google-sheet-form');
+        // Google Sheets & Mail Submission Logic
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxnN-neN2NsnMSsYPPVCUylicYyH40ZWzgMoTZIjZtst4D2ZuCn7JpFDMvjrsyX8H0/exec'; 
+        
+        const form = document.getElementById('booking-form');
         const submitBtn = document.getElementById('submit-btn');
         const successMessage = document.getElementById('success-message');
 
@@ -245,58 +297,59 @@
             let isValid = true;
             let selectedEventsStr = "";
 
-            // Custom Validation: If Photography is visible, ensure it's selected
             if (photoContainer.style.display === 'block' && photoSelect.value === "") {
                 alert("Please select a Photography Package.");
                 isValid = false;
             }
 
-            // Custom Validation: If Makeup is visible, ensure it's selected
             if (makeupContainer.style.display === 'block' && makeupSelect.value === "") {
                 alert("Please select a Makeup Package.");
                 isValid = false;
             }
 
-            // Custom Validation: If Event Services is visible, ensure at least one checkbox is checked
             if (eventContainer.style.display === 'block') {
                 const checkedBoxes = Array.from(eventCheckboxes).filter(cb => cb.checked);
                 if (checkedBoxes.length === 0) {
                     eventError.style.display = 'block';
                     isValid = false;
                 } else {
-                    eventError.style.display = 'none';
-                    // Create comma-separated list of selected events
                     selectedEventsStr = checkedBoxes.map(cb => cb.value).join(', ');
                 }
             }
 
-            // Stop submission if validation failed
             if (!isValid) return;
 
-            // Prepare for Submission
             submitBtn.innerText = 'Sending Inquiry...';
             submitBtn.disabled = true;
             
+            // Build FormData to send to Google Sheets
             let requestBody = new FormData(form);
 
-            // Inject manually gathered selections so they submit perfectly to Google Sheets
+            // Set the multi-select events dynamically
             if (eventContainer.style.display === 'block') {
                 requestBody.set('EventServices', selectedEventsStr);
             } else {
                 requestBody.delete('EventServices');
             }
 
-            fetch(scriptURL, { method: 'POST', body: requestBody })
-                .then(response => {
-                    form.style.display = 'none';
-                    successMessage.style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    alert("Oops! Something went wrong. Please try again or contact us via WhatsApp.");
-                    submitBtn.innerText = 'Confirm Booking Inquiry';
-                    submitBtn.disabled = false;
-                });
+            // Remove unselected package variables to keep data clean
+            if (photoContainer.style.display === 'none') requestBody.delete('PhotographyPackage');
+            if (makeupContainer.style.display === 'none') requestBody.delete('MakeupPackage');
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: requestBody 
+            })
+            .then(response => {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert("Oops! Something went wrong. Please try again or contact us via WhatsApp.");
+                submitBtn.innerText = 'Confirm Booking Inquiry';
+                submitBtn.disabled = false;
+            });
         });
     </script>
 </body>
