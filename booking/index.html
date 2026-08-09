@@ -62,17 +62,23 @@
         footer{background:#111;color:#fff;text-align:center;padding:40px 20px;border-top:1px solid rgba(255,255,255,.05)}
         .full-width{grid-column:1 / -1}
         
-        /* Custom Smart Checkbox Dropdown */
+        /* Updated Custom Smart Checkbox Dropdown */
         .multiselect-container { position: relative; width: 100%; user-select: none; }
         .select-box {
             width: 100%; padding: 15px 20px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15);
             border-radius: 8px; font-size: 14px; color: rgba(255,255,255,.4); cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center; height: 52px; transition: all 0.3s ease;
+            position: relative; height: 52px; transition: all 0.3s ease; display: block;
+        }
+        #event-select-text {
+            display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 25px; line-height: 20px;
         }
         .select-box:hover { border-color: rgba(212,175,55,.5); }
         .select-box.active { border-color: #d4af37; box-shadow: 0 0 0 4px rgba(212,175,55,.15); }
-        .select-box::after { content: '\25BC'; font-size: 10px; color: rgba(255,255,255,.5); transition: transform 0.3s; }
-        .select-box.open::after { transform: rotate(180deg); }
+        .select-box::after {
+            content: '\25BC'; font-size: 10px; color: rgba(255,255,255,.5); transition: transform 0.3s;
+            position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+        }
+        .select-box.open::after { transform: translateY(-50%) rotate(180deg); }
         .dropdown-list {
             position: absolute; top: calc(100% + 5px); left: 0; width: 100%; max-height: 250px; overflow-y: auto;
             background: #1a1a1a; border: 1px solid rgba(212,175,55,.3); border-radius: 8px;
@@ -82,7 +88,7 @@
         .dropdown-list::-webkit-scrollbar { width: 6px; }
         .dropdown-list::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
         .dropdown-list label {
-            display: flex; align-items: center; padding: 12px 20px; cursor: pointer; transition: background 0.2s;
+            display: flex; align-items: center; padding: 12px 20px; cursor: pointer; transition: all 0.2s ease;
             font-size: 14px; color: #eee;
         }
         .dropdown-list label:hover { background: rgba(255,255,255,.08); }
@@ -153,7 +159,9 @@
                         <!-- Dynamic Field: Event Services (Smart Dropdown Checkbox) -->
                         <div id="event-services-container" class="full-width" style="display: none;">
                             <div class="multiselect-container">
-                                <div class="select-box" id="event-select-box">Select Event Services...</div>
+                                <div class="select-box" id="event-select-box">
+                                    <span id="event-select-text">Select Event Services...</span>
+                                </div>
                                 <div class="dropdown-list" id="event-dropdown-list">
                                     <label><input type="checkbox" class="event-cb" value="Wedding Decoration / Decor"> Wedding Decoration / Decor</label>
                                     <label><input type="checkbox" class="event-cb" value="DJ & Music"> DJ & Music</label>
@@ -208,6 +216,7 @@
         // Custom Multiselect Elements
         const eventContainer = document.getElementById('event-services-container');
         const eventSelectBox = document.getElementById('event-select-box');
+        const eventSelectText = document.getElementById('event-select-text');
         const eventDropdownList = document.getElementById('event-dropdown-list');
         const eventCheckboxes = document.querySelectorAll('.event-cb');
         const eventError = document.getElementById('event-error');
@@ -230,19 +239,28 @@
             }
         });
 
-        // Update box text when checkboxes change
+        // Update box text and background when checkboxes change
         eventCheckboxes.forEach(cb => {
             cb.addEventListener('change', function() {
-                const checkedBoxes = Array.from(eventCheckboxes).filter(c => c.checked);
-                if (checkedBoxes.length === 0) {
-                    eventSelectBox.innerText = 'Select Event Services...';
-                    eventSelectBox.style.color = 'rgba(255,255,255,.4)';
-                } else if (checkedBoxes.length === 1) {
-                    eventSelectBox.innerText = checkedBoxes[0].value;
-                    eventSelectBox.style.color = '#fff';
+                
+                // Highlight the selected row
+                if (this.checked) {
+                    this.parentElement.style.background = 'rgba(212,175,55,.15)';
+                    this.parentElement.style.color = '#d4af37';
                 } else {
-                    eventSelectBox.innerText = checkedBoxes.length + ' Services Selected';
-                    eventSelectBox.style.color = '#fff';
+                    this.parentElement.style.background = '';
+                    this.parentElement.style.color = '#eee';
+                }
+
+                const checkedBoxes = Array.from(eventCheckboxes).filter(c => c.checked);
+                
+                // Show comma separated names in the box
+                if (checkedBoxes.length === 0) {
+                    eventSelectText.innerText = 'Select Event Services...';
+                    eventSelectText.style.color = 'rgba(255,255,255,.4)';
+                } else {
+                    eventSelectText.innerText = checkedBoxes.map(c => c.value).join(', ');
+                    eventSelectText.style.color = '#fff';
                 }
                 eventError.style.display = 'none';
             });
@@ -278,9 +296,14 @@
                 eventSelectBox.classList.remove('open', 'active');
                 eventError.style.display = 'none';
                 
-                eventCheckboxes.forEach(cb => cb.checked = false);
-                eventSelectBox.innerText = 'Select Event Services...';
-                eventSelectBox.style.color = 'rgba(255,255,255,.4)';
+                // Completely reset all checkbox visuals and states
+                eventCheckboxes.forEach(cb => {
+                    cb.checked = false;
+                    cb.parentElement.style.background = '';
+                    cb.parentElement.style.color = '#eee';
+                });
+                eventSelectText.innerText = 'Select Event Services...';
+                eventSelectText.style.color = 'rgba(255,255,255,.4)';
             }
         });
 
